@@ -2,28 +2,17 @@
 
 Warlock::Warlock()
 {
-    std::map<std::string, ASpell *>::iterator start = this->map.begin();
-    std::map<std::string, ASpell *>::iterator finish = this->map.end();
-    for(;start != finish; start++)
-    {
-        delete start->second;
-    }
-    this->map.clear();
 }
 
 Warlock::Warlock(Warlock &W)
 {
-    if (this != &W)
-        *this = W;
+    *this = W;
 }
 
 Warlock &Warlock::operator=(Warlock &W)
 {
-    if (this != &W)
-    {
-        this->name = W.name;
-        this->title = W.title;
-    }
+    this->name = W.name;
+    this->title = W.title;
     return (*this);
 }
 
@@ -96,8 +85,7 @@ void    Warlock::forgetSpell(std::string spell)
 //If it's not a known spell, does nothing.
 void    Warlock::launchSpell(std::string spell_name, const ATarget &at)
 {
-    ASpell *spell = this->book.createSpell(spell_name);
-    if (spell)
-        spell->launch(at);
+    if (book.createSpell(spell_name))
+        book.createSpell(spell_name)->launch(at);
 }
 

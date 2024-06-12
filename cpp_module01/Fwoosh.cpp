@@ -6,17 +6,12 @@ Fwoosh::Fwoosh() : ASpell("Fwoosh", "fwooshed")
 Fwoosh::Fwoosh(Fwoosh &F) : ASpell("Fwoosh", "fwooshed")
 {
     if (this != &F)
-    {
         *this = F;
-    }
 }
 
 Fwoosh &Fwoosh::operator=(Fwoosh &F)
 {
-    if (this != &F)
-    {
-        *this = F;
-    }
+    (void)F;
     return (*this);
 }
 

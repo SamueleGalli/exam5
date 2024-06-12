@@ -9,8 +9,8 @@ class    SpellBook
 {
     private:
         std::map<std::string, ASpell *> map;
-        SpellBook(SpellBook &SB);
-        SpellBook &operator=(SpellBook &SB);
+        SpellBook(const SpellBook &SB);
+        SpellBook &operator=(const SpellBook &SB);
     public:
         SpellBook();
 

@@ -9,12 +9,12 @@ class ASpell;
 
 class    ATarget
 {
-    private:
+    protected:
             std::string type;
     public:
         ATarget();
-        ATarget(ATarget &T);
-        ATarget &operator=(ATarget &T);
+        ATarget(const ATarget &T);
+        ATarget &operator=(const ATarget &T);
 
 
 
@@ -25,11 +25,11 @@ class    ATarget
         virtual ATarget *clone() const = 0;
 
 
-        const std::string       &getType() const;
+        std::string       getType() const;
 
 
 
-        ATarget(const std::string &type);
+        ATarget(std::string type_t);
 
 
         virtual ~ATarget();

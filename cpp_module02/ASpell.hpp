@@ -8,13 +8,13 @@ class ATarget;
 
 class    ASpell
 {
-    private:
+    protected:
         std::string name;
         std::string effects;
     public:
         ASpell();
-        ASpell(ASpell &S);
-        ASpell &operator=(ASpell &S);
+        ASpell(const ASpell &S);
+        ASpell &operator=(const ASpell &S);
 
 
 
@@ -27,8 +27,8 @@ class    ASpell
 
 
 
-        const std::string   &getName() const;
-        const std::string   &getEffects() const;
+        std::string   getName() const;
+        std::string   getEffects() const;
 
 
 

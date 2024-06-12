@@ -12,11 +12,8 @@ Warlock::Warlock(Warlock &W)
 
 Warlock &Warlock::operator=(Warlock &W)
 {
-    if (this != &W)
-    {
-        this->name = W.name;
-        this->title = W.title;
-    }
+    this->name = W.name;
+    this->title = W.title;
     return (*this);
 }
 
@@ -75,7 +72,7 @@ void    Warlock::learnSpell(ASpell *spell)
     {
         std::string s_name = spell->getName();
         if (map.find(s_name) == map.end())
-            map[s_name] = spell->clone();
+            map[s_name] = spell;
     }
 }
 

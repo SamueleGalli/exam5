@@ -3,20 +3,14 @@
 ATarget::ATarget()
 {}
 
-ATarget::ATarget(ATarget &T)
+ATarget::ATarget(const ATarget &T)
 {
-    if (this != &T)
-    {
         *this = T;
-    }
 }
 
-ATarget &ATarget::operator=(ATarget &T)
+ATarget &ATarget::operator=(const ATarget &T)
 {
-    if (this != &T)
-    {
-        this->type = T.type;
-    }
+    this->type = T.type;
     return (*this);
 }
 
@@ -25,14 +19,10 @@ ATarget &ATarget::operator=(ATarget &T)
 
 
 
-ATarget::ATarget(const std::string &type)
+ATarget::ATarget(std::string type_t)
 {
-    this->type = type;
+    this->type = type_t;
 }
-
-
-
-
 
 
 
@@ -47,7 +37,6 @@ ATarget::~ATarget()
 
 void    ATarget::getHitBySpell(const ASpell &spell) const
 {
-    std::cout << "Target type: " << type << std::endl; // Ensure 'type' is valid
     std::cout << this->type << " has been " << spell.getEffects() << "!\n";
 }
 
@@ -55,7 +44,7 @@ void    ATarget::getHitBySpell(const ASpell &spell) const
 
 
 
-const std::string       &ATarget::getType() const
+std::string       ATarget::getType() const
 {
     return (this->type);
 }

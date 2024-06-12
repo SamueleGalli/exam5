@@ -3,20 +3,15 @@
 TargetGenerator::TargetGenerator()
 {}
 
-TargetGenerator::TargetGenerator(TargetGenerator &F)
+TargetGenerator::TargetGenerator(const TargetGenerator &F)
 {
-    if (this != &F)
-    {
-        *this = F;
-    }
+    *this = F;
 }
 
-TargetGenerator &TargetGenerator::operator=(TargetGenerator &F)
+TargetGenerator &TargetGenerator::operator=(const TargetGenerator &F)
 {
     if (this != &F)
-    {
         *this = F;
-    }
     return (*this);
 }
 
@@ -26,13 +21,6 @@ TargetGenerator &TargetGenerator::operator=(TargetGenerator &F)
 
 TargetGenerator::~TargetGenerator()
 {
-    std::map<std::string, ATarget *>::iterator start = this->map.begin();
-    std::map<std::string, ATarget *>::iterator finish = this->map.end();
-    for(;start != finish; start++)
-    {
-        delete start->second;
-    }
-    this->map.clear();
 }
 
 
@@ -47,9 +35,9 @@ void    TargetGenerator::learnTargetType(ATarget *target)
     if (target != 0)
     {
         std::string nameT = target->getType();
-        if (this->map.find(nameT) != this->map.end())
+        if (this->map.find(nameT) == this->map.end())
         {
-            this->map[nameT] = target->clone();
+            this->map[nameT] = target;
         }
     }
 }
@@ -64,7 +52,6 @@ void    TargetGenerator::forgetTargetType(std::string const &target)
     std::map<std::string, ATarget *>::iterator it = this->map.find(target);
     if (it != this->map.end())
     {
-        delete it->second;
         this->map.erase(it);
     }
 }
@@ -75,10 +62,10 @@ void    TargetGenerator::forgetTargetType(std::string const &target)
 //specified type
 ATarget* TargetGenerator::createTarget(std::string const &target)
 {
-    std::map<std::string, ATarget *>::iterator it = this->map.find(target);
-    if (it != this->map.end())
+    ATarget *tmp = 0;
+    if (this->map.find(target) != this->map.end())
     {
-        return (this->map[target]);
+        tmp = this->map[target];
     }
-    return (0);
+    return (tmp);
 }

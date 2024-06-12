@@ -6,7 +6,6 @@
 
 class    Polymorph : public ASpell
 {
-    private:
     public:
         Polymorph();
         Polymorph(Polymorph &P);

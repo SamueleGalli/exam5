@@ -6,17 +6,12 @@ ATarget::ATarget()
 ATarget::ATarget(ATarget &T)
 {
     if (this != &T)
-    {
         *this = T;
-    }
 }
 
 ATarget &ATarget::operator=(ATarget &T)
 {
-    if (this != &T)
-    {
-        this->type = T.type;
-    }
+    this->type = T.type;
     return (*this);
 }
 

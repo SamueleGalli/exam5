@@ -5,11 +5,12 @@
 #include "ATarget.hpp"
 #include <map>
 #include <algorithm>
+
 class    TargetGenerator
 {
     private:
-        TargetGenerator(TargetGenerator &TG);
-        TargetGenerator &operator=(TargetGenerator &TG);
+        TargetGenerator(const TargetGenerator &TG);
+        TargetGenerator &operator=(const TargetGenerator &TG);
         std::map<std::string, ATarget *>    map;
     public:
         TargetGenerator();

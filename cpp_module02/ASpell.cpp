@@ -3,21 +3,15 @@
 ASpell::ASpell()
 {}
 
-ASpell::ASpell(ASpell &S)
+ASpell::ASpell(const ASpell &S)
 {
-    if (this != &S)
-    {
-        *this = S;
-    }
+    *this = S;
 }
 
-ASpell &ASpell::operator=(ASpell &S)
+ASpell &ASpell::operator=(const ASpell &S)
 {
-    if (this != &S)
-    {
-        this->name = S.name;
-        this->effects = S.effects;
-    }
+    this->name = S.name;
+    this->effects = S.effects;
     return (*this);
 }
 
@@ -33,13 +27,13 @@ ASpell::ASpell(const std::string &a_n, const std::string &a_e)
 
 
 
-const std::string   &ASpell::getName() const
+std::string   ASpell::getName() const
 {
     return (this->name);
 }
 
 
-const std::string   &ASpell::getEffects() const
+std::string   ASpell::getEffects() const
 {
     return (this->effects);
 }

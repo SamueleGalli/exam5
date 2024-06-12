@@ -12,11 +12,9 @@ Warlock::Warlock(Warlock &W)
 
 Warlock &Warlock::operator=(Warlock &W)
 {
-    if (this != &W)
-    {
-        this->name = W.name;
-        this->title = W.title;
-    }
+
+    this->name = W.name;
+    this->title = W.title;
     return (*this);
 }
 

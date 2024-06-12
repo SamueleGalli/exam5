@@ -4,20 +4,15 @@ SpellBook::SpellBook()
 {
 }
 
-SpellBook::SpellBook(SpellBook &SP)
+SpellBook::SpellBook(const SpellBook &SP)
 {
-    if (this != &SP)
-    {
-        *this = SP;
-    }
+    *this = SP;
 }
 
-SpellBook &SpellBook::operator=(SpellBook &SP)
+SpellBook &SpellBook::operator=(const SpellBook &SP)
 {
     if (this != &SP)
-    {
         *this = SP;
-    }
     return (*this);
 }
 
@@ -29,13 +24,6 @@ SpellBook &SpellBook::operator=(SpellBook &SP)
 
 SpellBook::~SpellBook()
 {
-    std::map<std::string, ASpell *>::iterator start = this->map.begin();
-    std::map<std::string, ASpell *>::iterator finish = this->map.end();
-    for(;start != finish; start++)
-    {
-        delete start->second;
-    }
-    this->map.clear();
 }
 
 
@@ -48,9 +36,9 @@ void SpellBook::learnSpell(ASpell *spell)
     if (spell != 0)
     {
         std::string name_spell = spell->getName();
-        if (map.find(name_spell) == map.end())
+        if (this->map.find(name_spell) == this->map.end())
         {
-            map[name_spell] = spell->clone();
+            this->map[name_spell] = spell;
         }
 
     }
@@ -62,9 +50,11 @@ void SpellBook::learnSpell(ASpell *spell)
 //  if it isn't there
 void SpellBook::forgetSpell(std::string const &spell)
 {
-    std::map<std::string, ASpell *>::iterator it = map.find(spell);
-    if (it != map.end())
-        map.erase(it);
+    std::map<std::string, ASpell *>::iterator it = this->map.find(spell);
+    if (it != this->map.end())
+    {
+        this->map.erase(it);
+    }
 }
 
 
@@ -74,9 +64,10 @@ void SpellBook::forgetSpell(std::string const &spell)
 // and returns it.
 ASpell* SpellBook::createSpell(std::string const &spell)
 {
-    if (map.find(spell) != map.end())
+    ASpell *tmp = NULL;
+    if (this->map.find(spell) != this->map.end())
     {
-        return (map[spell]);
+        tmp = this->map[spell];
     }
-    return (0);
+    return (tmp);
 }

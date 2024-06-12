@@ -1,13 +1,14 @@
 #include "Warlock.hpp"
 #include "ASpell.hpp"
-#include "Fwoosh.hpp"
-#include "Dummy.hpp"
 #include "ATarget.hpp"
-#include "Fireball.hpp"
-#include "SpellBook.hpp"
+#include "Dummy.hpp"
+#include "Fwoosh.hpp"
 #include "BrickWall.hpp"
+#include "Fireball.hpp"
 #include "Polymorph.hpp"
+#include "SpellBook.hpp"
 #include "TargetGenerator.hpp"
+
 
 int main()
 {
@@ -21,15 +22,23 @@ int main()
   tarGen.learnTargetType(&model1);
   richard.learnSpell(polymorph);
 
+  BrickWall test;
   Fireball* fireball = new Fireball();
 
   richard.learnSpell(fireball);
 
   ATarget* wall = tarGen.createTarget("Inconspicuous Red-brick Wall");
-
+  
+  
   richard.introduce();
-  std::cout << "testing\n\n\n";
   richard.launchSpell("Polymorph", *wall);
-  std::cout << "testing\n\n\n";
   richard.launchSpell("Fireball", *wall);
+
+  
+  delete polymorph;
+  delete fireball;
+
+
+
+
 }

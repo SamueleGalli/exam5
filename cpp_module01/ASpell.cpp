@@ -6,18 +6,13 @@ ASpell::ASpell()
 ASpell::ASpell(ASpell &S)
 {
     if (this != &S)
-    {
         *this = S;
-    }
 }
 
 ASpell &ASpell::operator=(ASpell &S)
 {
-    if (this != &S)
-    {
-        this->name = S.name;
-        this->effects = S.effects;
-    }
+    this->name = S.name;
+    this->effects = S.effects;
     return (*this);
 }
 
